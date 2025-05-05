@@ -9,7 +9,6 @@ O projeto em si consiste na seguinte estrutura
 * Menu
 * Cálculo da Simulação
 * Acompanhamento de um financiamento realizado
-* Pagamento das parcelas ou saldo antecipado
 
 Além disso os códigos foram separados em:
 * Menu
