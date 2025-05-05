@@ -58,7 +58,7 @@ def gerarArquivo (parametros, tabela):
     # Contar arquivos existentes na pasta
     arquivosExistentes = [
         f for f in os.listdir(pastaDestino)
-        if f.endswith('.xlsx')
+        if f.endswith('.xlsx') and not f.startswith('~$')
     ]
     contagem = len(arquivosExistentes) + 1
     nomeArquivo = f'{hoje}_{contagem:03}.xlsx'

@@ -4,21 +4,32 @@
 import os
 from time import sleep
 from Simulador import *
+from Formalizado import *
 
 msgInicial = 'Bem-vindo ao sistema de Financiamento Price (Modelo)'
 
 msgOpcoes = '''===============
   01 - Simular Financiamento
   02 - Consultar Financiamento
-  03 - Baixar Financiamento (Parcela ou Amortização)
-  04 - Aprovar Financiamento
+  03 - Aprovar Financiamento
   00 - Sair
 ==============='''
 
 msgRetorno = '''===============
-  01 - Continuar
+  01 - Menu Inicial
   00 - Sair
 ==============='''
+
+def retorno():
+    print(msgRetorno)
+    op = int(input())
+    if op == 1:
+        menuInicial()
+    elif op == 0:
+        sairSistema()
+    else:
+        print('Opção inválida!')
+        retorno()
 
 def sairSistema():
     print(' Obrigado por utilzar o sistema!\n Até logo.')
@@ -39,11 +50,22 @@ def menuInicial():
             case 1: # Simular Financiamento
                 caseSimularFinanc()
             case 2: # Consultar Financiamento
-                pass
-            case 3: # Baixar saldo (Parcela ou Amortização)
-                pass
-            case 4: # Aprovar Financiamento
-                pass
+                print('===============')
+                # Listar as simulações geradas
+                for i, arquivos in enumerate(listaArquivos(pastaContratado())):
+                    print('[{}] {}'.format(i,arquivos))
+                print('===============')
+                consultarContratado()
+                retorno()
+            case 3: # Aprovar Financiamento
+                print('===============')
+                # Listar as simulações aprovadas
+                for i, arquivos in enumerate(listaArquivos(pastaSimulacao())):
+                    print('[{}] {}'.format(i,arquivos))
+                print('===============')
+                nomeArquivo = consultarSimulacao()
+                aprovarSimul(nomeArquivo)
+                retorno()
             case _:
                 print('Opção inválida!')
                 sleep(1)
